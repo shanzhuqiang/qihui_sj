@@ -1,0 +1,13 @@
+<!--pages/test/test.wxml-->
+<view bindtap="selectDate">dasdasasd</view>
+<block wx:if="{{datePickerIsShow}}">
+  <com-date-picker
+          id="date-picker"
+          startAt="{{ startAt }}"
+          endAt="{{ endAt }}"
+          isShow="{{ datePickerIsShow }}"
+          bindsureclick="onDatePickerOnSureClick"
+          bindonTouchmask="onTouchmask">
+  </com-date-picker>
+</block>
+<van-toast id="van-toast" />

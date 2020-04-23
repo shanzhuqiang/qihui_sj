@@ -1,0 +1,8 @@
+/* pages/changePassword/changePassword.wxss */
+.passwordChangeWrap{
+  padding: 50rpx 20rpx 0;
+}
+.passwordChangeWrap .buttonBox{
+  padding: 40rpx 20rpx 0;
+  box-sizing: border-box;
+}

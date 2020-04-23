@@ -1,0 +1,23 @@
+<!--index.wxml-->
+<view class="indexWrap">
+  <view class="topBox">
+    <view class="topBg"></view>
+    <view class="bottomBox">
+      <view class="itemBox fl" bindtap="goShouyi">
+        <view class="price">{{ homeData ? '￥' + homeData.total_money : '请先登录' }}</view>
+        <view class="des">今日营业额</view>
+        <image class="money" src="../../images/money.png"></image>
+      </view>
+      <view class="itemBox fr" bindtap="orderNum">
+        <view class="price">{{ homeData ? homeData.total_num : '请先登录' }}</view>
+        <view class="des">今日订单数</view>
+        <image class="orderNum" src="../../images/orderNum.png"></image>
+      </view>
+    </view>
+  </view>
+  <view class="saoBox" bindtap="saoCode">
+    <image class="sao" src="../../images/sao.png"></image>
+    <view class="text">扫码核销</view>
+  </view>
+  <view class="tishi">注：若忘记扫码核销，订单将在10个工作日内自动变为已完成，不会影响您的收益</view>
+</view>

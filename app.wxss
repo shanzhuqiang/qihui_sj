@@ -1,0 +1,17 @@
+/**app.wxss**/
+.bottonClass{
+  background: transparent;
+  margin: 0;
+  font-size: 24rpx;
+  line-height: 24rpx;
+  padding: 0;
+}
+.bottonClass::after{
+  border: none;
+}
+.fr{
+  float: right;
+}
+.fl{
+  float: left;
+}

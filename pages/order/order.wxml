@@ -1,0 +1,124 @@
+<view class="orderWrap">
+  <view class="searchBox">
+    <view class="searchLeft">
+      <van-search value="{{ value }}" placeholder="请输入骑手姓名/订单号" bind:change="onChange" bind:search="onSearch"></van-search>
+    </view>
+    <view class="searchRight" bindtap="selectDate">
+      <van-icon name="filter-o" size="20px"/>
+      <view class="textBox">
+        <text class="text">日期</text>
+      </view>
+    </view>
+  </view>
+  <view class="filterTimeBox" wx:if="{{ timeFilter }}">
+    <view class="filterTimeV fl">
+      <view class="title">开始时间</view>
+      <view class="time">{{ startAt }}</view>
+    </view>
+    <view class="filterTimeV fl">
+      <view class="title">结束时间</view>
+      <view class="time">{{ endAt }}</view>
+    </view>
+  </view>
+  <view class="filterBox">
+    <van-row class="filterRow" gutter="10">
+      <van-col span="8">
+        <view class="filterBtn {{ type == 'all' ? 'active' : '' }}" bindtap="chooseType" data-id="all">
+          全部
+          <view class="num" wx:if="{{ orderNum.all }}">{{ orderNum.all }}</view>
+        </view>
+      </van-col>
+      <van-col span="8">
+        <view class="filterBtn {{ type == 'one' ? 'active' : '' }}" bindtap="chooseType" data-id="one">
+          已接单
+          <view class="num" wx:if="{{ orderNum.one }}">{{ orderNum.one }}</view>
+        </view>
+      </van-col>
+      <van-col span="8">
+        <view class="filterBtn {{ type == 'two' ? 'active' : '' }}" bindtap="chooseType" data-id="two">
+          待退单
+          <view class="num" wx:if="{{ orderNum.two }}">{{ orderNum.two }}</view>
+        </view>
+      </van-col>
+    </van-row>
+    <van-row class="filterRow" gutter="10">
+      <van-col span="8">
+        <view class="filterBtn {{ type == 'three' ? 'active' : '' }}" bindtap="chooseType" data-id="three">
+          已完成
+          <view class="num" wx:if="{{ orderNum.three }}">{{ orderNum.three }}</view>
+        </view>
+      </van-col>
+      <van-col span="8">
+        <view class="filterBtn {{ type == 'four' ? 'active' : '' }}" bindtap="chooseType" data-id="four">
+          已退单
+          <view class="num" wx:if="{{ orderNum.four }}">{{ orderNum.four }}</view>
+        </view>
+      </van-col>
+    </van-row>
+  </view>
+  <view class="mainBox">
+    <view class="itemBox" wx:for="{{ order_list }}" wx:key="index">
+      <view class="one" >
+        <view class="fl leftBox">
+          <view class="num">#{{ item.order_id }}</view>
+          <view class="type">{{ item.way === 1 ? '堂食' : item.way === 2 ? '外带' : item.way }}</view>
+        </view>
+        <view class="fl">
+          <view class="orderId">订单编号：{{ item.order_sn }}</view>
+          <view class="time">下单时间：{{ item.add_time }}</view>
+        </view>
+        <view class="status fr">{{ item.order_status_tip }}</view>
+      </view>
+      <view class="two">
+        <view class="name">{{ item.consignee }}<text class="phone">{{ item.mobile }}</text></view>
+        <view class="time">预约时间：{{ item.app_time }}</view>
+      </view>
+      <view class="three">
+        本单收入
+        <view class="price">￥{{ Number(item.total_price) }}</view>
+        <!-- <view class="price">￥{{ item.totalP }}</view> -->
+      </view>
+      <view class="four">
+        <view class="btn btn2">打印小票</view>
+        <view class="btn btn2" wx:if="{{ item.order_status == 2 || item.order_status == 3 || item.order_status == 4 }}" catchtap="saoCode">扫码</view>
+        <view class="btn">一键拨打客户电话</view>
+      </view>
+    </view>
+    <!-- <view class="itemBox">
+      <view class="one" >
+        <view class="fl leftBox">
+          <view class="num">#09</view>
+          <view class="type">外带</view>
+        </view>
+        <view class="fl">
+          <view class="orderId">订单编号：1234567890</view>
+          <view class="time">下单时间：2020-02-08 18:00</view>
+        </view>
+        <view class="status fr">已接单</view>
+      </view>
+      <view class="two">
+        <view class="name">周杰伦<text class="phone">15967101022</text></view>
+        <view class="time">预约时间：2020-02-08（明天） 18:00</view>
+      </view>
+      <view class="three">
+        本单收入
+        <view class="price">￥30.25</view>
+      </view>
+      <view class="four">
+        <view class="btn btn2">打印小票</view>
+        <view class="btn btn2">扫码</view>
+        <view class="btn">一键拨打客户电话</view>
+      </view>
+    </view> -->
+  </view>
+  <block wx:if="{{datePickerIsShow}}">
+    <com-date-picker
+            id="date-picker"
+            startAt="{{ startAt }}"
+            endAt="{{ endAt }}"
+            isShow="{{ datePickerIsShow }}"
+            bindsureclick="onDatePickerOnSureClick"
+            bindonTouchmask="onTouchmask">
+    </com-date-picker>
+  </block>
+</view>

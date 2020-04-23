@@ -1,0 +1,154 @@
+/* pages/order/order.wxss */
+/* pages/yue/yue.wxss */
+.shouyiWrap{
+}
+.shouyiWrap .topBox{
+  padding: 20rpx 30rpx;
+  background: #f8f8f8;
+}
+.shouyiWrap .topBox .topShow{
+  height: 144rpx;
+}
+.shouyiWrap .topBox .topShow .halfBox{
+	width: 340rpx;
+	height: 144rpx;
+	background-color: #fff;
+	box-shadow: 0 7rpx 8rpx 1rpx 
+		rgba(0, 0, 0, 0.05);
+	border-radius: 10rpx;
+  padding: 30rpx 0 0 20rpx;
+  box-sizing: border-box;
+}
+.shouyiWrap .topBox .topShow .halfBox .price{
+	font-family: PingFangSC-Semibold;
+	font-size: 36rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+	color: #fe4a2c;
+}
+.shouyiWrap .topBox .topShow .halfBox .price2{
+	font-family: PingFangSC-Semibold;
+	font-size: 36rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+	color: #333;
+}
+.shouyiWrap .topBox .topShow .halfBox .des{
+	font-family: PingFangSC-Regular;
+	font-size: 24rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+	color: #777;
+  padding-top: 24rpx;
+}
+.shouyiWrap .topBox .itemRow{
+  height: 140rpx;
+  line-height: 140rpx;
+  margin-top: 16rpx;
+  background: #fff;
+  position: relative;
+  padding: 0 30rpx;
+	box-shadow: 0 7rpx 8rpx 1rpx 
+		rgba(0, 0, 0, 0.05);
+	border-radius: 10rpx;
+}
+.shouyiWrap .topBox .itemRow .price{
+	font-family: PingFangSC-Semibold;
+  height: 50rpx;
+  line-height: 50rpx;
+	font-size: 36rpx;
+	color: #333333;
+  padding-top: 30rpx;
+}
+.shouyiWrap .topBox .itemRow .yue{
+	font-family: PingFangSC-Regular;
+	font-size: 24rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+	color: #333;
+  padding: 10rpx 0 0 10rpx;
+}
+.shouyiWrap .topBox .itemRow .btnBox{
+	width: 152rpx;
+	height: 64rpx;
+  line-height: 64rpx;
+  text-align: center;
+	background-color: #f3475f;
+	border-radius: 32rpx;
+	font-family: PingFangSC-Regular;
+	font-size: 28rpx;
+	color: #fff;
+  position: absolute;
+  right: 30rpx;
+  top: 35rpx;
+}
+.shouyiWrap .historyBox{
+  padding: 0 30rpx;
+}
+.shouyiWrap .historyBox .item{
+  height: 160rpx;
+  border-bottom: 1rpx solid #f8f8f8;
+  position: relative;
+}
+.shouyiWrap .historyBox .item .tittleT{
+	font-family: PingFangSC-Regular;
+	font-size: 30rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+	color: #333;
+  padding-top: 42rpx;
+}
+.shouyiWrap .historyBox .item .tittleT > text{
+	font-family: PingFangSC-Regular;
+	font-size: 24rpx;
+	color: #959595;
+  margin-left: 14rpx;
+}
+.shouyiWrap .historyBox .item .timeT{
+	font-family: PingFangSC-Regular;
+	font-size: 24rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+	color: #959595;
+  padding-top: 20rpx;
+}
+.shouyiWrap .historyBox .item .num{
+	font-family: PingFangSC-Semibold;
+	font-size: 36rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+	color: #f34848;
+  position: absolute;
+  right: 30rpx;
+  top: 44rpx;
+}
+.shouyiWrap .historyBox .item .num2{
+	font-family: PingFangSC-Semibold;
+	font-size: 36rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+	color: #333;
+  position: absolute;
+  right: 30rpx;
+  top: 44rpx;
+}
+.shouyiWrap .historyBox .item .status{
+	font-family: PingFangSC-Regular;
+	font-size: 24rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+	color: #e89e3e;
+  position: absolute;
+  right: 30rpx;
+  top: 90rpx;
+}
+.shouyiWrap .historyBox .item .status1{
+	font-family: PingFangSC-Regular;
+	font-size: 24rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+	color: #959595;
+  position: absolute;
+  right: 30rpx;
+  top: 90rpx;
+}

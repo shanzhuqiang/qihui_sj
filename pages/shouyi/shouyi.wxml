@@ -1,0 +1,32 @@
+<!--pages/order/order.wxml-->
+<view class="shouyiWrap">
+  <view class="topBox">
+    <view class="topShow">
+      <view class="halfBox fl">
+        <view class="price">￥{{ money }}</view>
+        <view class="des">今日营业统计</view>
+      </view>
+      <view class="halfBox fr">
+        <view class="price2">￥{{ staticsSummary.total_money }}</view>
+        <view class="des">销售额</view>
+      </view>
+    </view>
+    <view class="itemRow">
+      <view class="price">￥{{ staticsSummary.available_money }}</view>
+      <view class="yue">可提现金额</view>
+      <view class="btnBox" bindtap="withdraw">立即提现</view>
+    </view>
+    <view class="itemRow">
+      <view class="price">￥{{ staticsSummary.frozen_money }}</view>
+      <view class="yue">待确认金额</view>
+    </view>
+  </view>
+  <view class="historyBox">
+    <view class="item" wx:for="{{ cahs_list }}" wx:key="index">
+      <view class="tittleT">{{ item.tip }}<text>订单编号：{{ item.order_no }}</text></view>
+      <view class="timeT">{{ item.time }}</view>
+      <view class="{{ item.cashOn ? 'num' : 'num2' }}">{{ item.cash }}</view>
+      <view class="{{ item.status_ch === '提现中' ? 'status' : 'status1' }}">{{ item.status_ch }}</view>
+    </view>
+  </view>
+</view>

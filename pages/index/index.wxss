@@ -1,0 +1,85 @@
+/**index.wxss**/
+.indexWrap .topBox{
+  height: 204rpx;
+  background: #f8f8f8;
+}
+.indexWrap .topBox .topBg{
+	height: 110rpx;
+	background-color: #f3475f;
+	border-radius: 0 0 120rpx 120rpx;
+}
+.indexWrap .topBox .bottomBox{
+  padding: 0 30rpx;
+  margin-top: -60rpx;
+}
+.indexWrap .topBox .bottomBox .itemBox{
+	width: 340rpx;
+	height: 144rpx;
+	background-color: #ffffff;
+	box-shadow: -1rpx 6rpx 8rpx 1rpx 
+		rgba(0, 0, 0, 0.05);
+	border-radius: 10rpx;
+  position: relative;
+  padding: 30rpx 0 0 30rpx;
+  box-sizing: border-box;
+}
+.indexWrap .topBox .bottomBox .itemBox .price{
+	font-family: PingFangSC-Semibold;
+	font-size: 36rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+	color: #fe4a2c;
+}
+.indexWrap .topBox .bottomBox .itemBox .des{
+	font-family: PingFangSC-Regular;
+	font-size: 24rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+	color: #777;
+  padding-top: 20rpx;
+}
+.indexWrap .topBox .bottomBox .itemBox .money{
+  position: absolute;
+  width: 52rpx;
+  height: 58rpx;
+  top: 37rpx;
+  right: 31rpx;
+}
+.indexWrap .topBox .bottomBox .itemBox .orderNum{
+  position: absolute;
+  width: 64rpx;
+  height: 55rpx;
+  top: 39rpx;
+  right: 33rpx;
+}
+.indexWrap .saoBox{
+  width: 204rpx;
+  height: 204rpx;
+	background-color: #f3475f;
+	box-shadow: 3rpx 3rpx 27rpx 0 
+		rgba(0, 0, 0, 0.14);
+  margin: 260rpx auto 0;
+  border-radius: 50%;
+  text-align: center;
+}
+.indexWrap .saoBox .sao{
+  width: 70rpx;
+  height: 74rpx;
+  margin-top: 44rpx;
+}
+.indexWrap .saoBox .text{
+	font-family: MicrosoftYaHei;
+	font-size: 24rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+	color: #fff;
+  padding-top: 20rpx;
+}
+.indexWrap .tishi{
+	font-family: PingFangSC-Regular;
+	font-size: 24rpx;
+	line-height: 30rpx;
+	color: #999;
+  padding: 60rpx 100rpx 0;
+  text-align: center;
+}

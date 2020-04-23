@@ -1,0 +1,149 @@
+/* pages/orderInfo/orderInfo.wxss */
+page{
+  height: 100%;
+  background: #f8f8f8;
+}
+.orderInfoWrap{
+  /* height: 100%; */
+  background: #f8f8f8;
+}
+.orderInfoWrap .firstRow{
+  height: 100rpx;
+  line-height: 100rpx;
+	font-family: PingFangSC-Regular;
+	font-size: 36rpx;
+	color: #323333;
+  padding: 0 30rpx;
+  border-bottom: 20rpx solid #f8f8f8;
+  background: #fff;
+}
+.orderInfoWrap .firstRow .shopName{
+  float: right;
+	font-family: PingFangSC-Regular;
+	font-size: 30rpx;
+	color: #999;
+  text-align: right;
+  width: 400rpx;
+}
+.orderInfoWrap .itemRow .itemOne{
+  float: right;
+  width: 160rpx;
+	font-family: PingFangSC-Semibold;
+	font-size: 26rpx;
+	color: #363636;
+}
+.orderInfoWrap .itemRow .itemOne .num{
+	font-family: PingFangSC-Regular;
+}
+.orderInfoWrap .itemRow .itemOne .price{
+  float: right;
+	font-family: PingFangSC-Semibold;
+}
+.orderInfoWrap .itemRow .itemOne .price2{
+	font-family: PingFangSC-Semibold;
+	font-size: 30rpx;
+	color: #f73003;
+}
+
+
+
+
+/* .orderInfoWrap .itemRow{
+  padding: 0 30rpx;
+	border-bottom: solid 20rpx #f8f8f8;
+} */
+/* .orderInfoWrap .itemRow .itemOne{
+  height: 100rpx;
+  line-height: 100rpx;
+	font-family: PingFangSC-Regular;
+	font-size: 26rpx;
+	color: #363636;
+	border-bottom: solid 1rpx #f8f8f8;
+} */
+/* .orderInfoWrap .itemRow .itemOne .itemLeft{
+  height: 100rpx;
+  float: left;
+  width: 500rpx;
+}
+.orderInfoWrap .itemRow .itemOne .itemLeft .one{
+	font-family: PingFangSC-Regular;
+	font-size: 26rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  padding-top: 20rpx;
+	color: #363636;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.orderInfoWrap .itemRow .itemOne .itemLeft .two{
+	font-family: PingFangSC-Regular;
+	font-size: 20rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+	color: #676767;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+} */
+/* .orderInfoWrap .secondRow{
+  height: 100rpx;
+  line-height: 100rpx;
+  padding: 0 30rpx;
+	font-family: PingFangSC-Regular;
+	font-size: 26rpx;
+	color: #333333;
+	border-bottom: solid 20rpx #f8f8f8;
+}
+.orderInfoWrap .secondRow .rightVal{
+  float: right;
+  height: 100rpx;
+  line-height: 100rpx;
+  max-width: 600rpx;
+} */
+.orderInfoWrap .lastRow{
+  padding: 38rpx 30rpx;
+	font-family: PingFangSC-Regular;
+	color: #333333;
+	font-size: 26rpx;
+	border-bottom: solid 20rpx #f8f8f8;
+  display: flex;
+  align-items: left;
+  justify-content: space-around;
+  flex-direction: column;
+}
+.orderInfoWrap .lastRow .rightVal{
+  display: flex;
+  align-items: left;
+  justify-content: space-around;
+  flex-direction: column;
+  float: right;
+  max-width: 580rpx;
+}
+.orderInfoWrap .bottomBox{
+  height: 120rpx;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 0 30rpx;
+  background: #fff;
+	box-shadow: 0px -3rpx 4rpx 0 rgba(0, 0, 0, 0.02);
+}
+.orderInfoWrap .bottomBox .btnBox{
+	height: 64rpx;
+  line-height: 64rpx;
+  text-align: center;
+	border-radius: 10rpx;
+	border: solid 1rpx #999;
+	font-family: PingFangSC-Regular;
+	font-size: 28rpx;
+	color: #363636;
+  padding: 0 20rpx;
+  float: right;
+  margin: 28rpx 0 0 20rpx;
+}
+.orderInfoWrap .bottomBox .btnBox.colorBtn{
+	border: solid 1rpx #ff603e;
+	color: #ff603e;
+}

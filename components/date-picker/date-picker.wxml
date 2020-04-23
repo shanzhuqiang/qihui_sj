@@ -1,0 +1,34 @@
+<view wx:if="{{showPicker}}" class="date-picker">
+    <view class="date-picker-mask" catchtouchstart="onTouchmask"></view>
+    <view class="date-picker-content">
+        <view class="date-picker-date-content">
+            <view class="date-picker-date-content-bg-left" style="{{tapIndex=='startTime'?'':'background: #f8f8f8'}}" bindtouchstart="onTapTimeIndex" data-type="startTime">
+                <view class="date-picker-date-content-title">开始于</view>
+                <view class="date-picker-date-content-time">{{startAt}}</view>
+            </view>
+            <view class="date-picker-date-content-bg-right"style="{{tapIndex=='endTime'?'':'background: #f8f8f8'}}" bindtouchstart="onTapTimeIndex" data-type="endTime">
+                <view class="date-picker-date-content-title">结束于</view>
+                <view class="date-picker-date-content-time">{{endAt}}</view>
+            </view>
+        </view>
+        <view class='date-picker-content-top'>
+            <view class="date-picker-content-cancel" ></view>
+            <view style="color: #666666; font-size: 28rpx">选择日期</view>
+            <view class="date-picker-content-sure"  catchtouchend="onSureClick">完成</view>
+        </view>
+        <view class="date-picker-content-line"></view>
+        <view class="date-picker-content-center">
+            <picker-view indicator-style="height: 70rpx;" style="width: 100%; height: 360rpx;" value="{{tapIndex==='startTime'?startValue:endValue}}" catchchange="bindPickerChange">
+                <picker-view-column wx:if="{{years.length > 0}}" class="date-picker-content-item">
+                    <view wx:for="{{years}}" wx:key="index" style="line-height: 70rpx">{{item}}年</view>
+                </picker-view-column>
+                <picker-view-column wx:if="{{months.length > 0}}" class="date-picker-content-item">
+                    <view wx:for="{{months}}" wx:key="index" style="line-height: 70rpx">{{item}}月</view>
+                </picker-view-column>
+                <picker-view-column wx:if="{{days.length > 0}}" class="date-picker-content-item">
+                    <view wx:for="{{days}}" wx:key="index" style="line-height: 70rpx">{{item}}日</view>
+                </picker-view-column>
+            </picker-view>
+        </view>
+    </view>
+</view>

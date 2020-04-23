@@ -1,0 +1,18 @@
+<!--pages/passwordChange/passwordChange.wxml-->
+<view class="passwordChangeWrap">
+  <van-cell-group border="{{ false }}">
+    <van-field
+      value="{{ user }}"
+      bind:change="userChange"
+      placeholder="请输入账号"/>
+    <van-field
+      value="{{ password }}"
+      type="password"
+      bind:change="passwordChange"
+      placeholder="请输入密码"/>
+    <view class="buttonBox">
+      <van-button color="#f3475f" size="large" bindtap="formSubmit">立即登录</van-button>
+    </view>
+  </van-cell-group>
+  <van-toast id="van-toast" />
+</view>
