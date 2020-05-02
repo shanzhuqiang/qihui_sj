@@ -15,3 +15,15 @@ page{
   position: relative;
   top: 10rpx;
 }
+.settingWrap .loginOut{
+  width: 680rpx;
+	height: 88rpx;
+  line-height: 88rpx;
+	background-color: #f3475f;
+	border-radius: 5rpx;
+	font-family: PingFangSC-Regular;
+	font-size: 32rpx;
+	color: #fff;
+  margin: 20rpx auto 0;
+  text-align: center;
+}

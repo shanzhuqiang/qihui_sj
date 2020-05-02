@@ -25,7 +25,7 @@ Page({
   withdraw () {
     wx.showModal({
       title: '提示',
-      content: '确认提现吗？',
+      content: '平台将于每月5号、15号对商家进行打款，打款日起，3日内到账，确认提现吗？',
       success: (res) => {
         if (res.confirm) {
           wx.showLoading({
@@ -85,11 +85,22 @@ Page({
       method: 'POST',
       success: (res) => {
         if (res.data.error_code === 0) {
-          let cahs_list = res.data.bizobj.cahs_list
-          cahs_list.forEach(el => {
-            if (el.cash.indexOf("+") === 0) {
-              el["cashOn"] = true
+          let cahs_list = []
+          res.data.bizobj.cahs_list.forEach(el =>{
+            let obj = {}
+            for (let key in el) {
+              obj["time"] = key
+              obj["cash_list"] = el[key]["cash_list"]
+              obj["is_today"] = el[key]["is_today"]
             }
+            cahs_list.push(obj)
+          })
+          cahs_list.forEach(el => {
+            el.cash_list.forEach(el2 => {
+              if (el2.cash.indexOf("+") === 0) {
+                el2["cashOn"] = true
+              }
+            })
           })
           this.setData({
             cahs_list: cahs_list

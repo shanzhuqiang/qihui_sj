@@ -11,7 +11,8 @@
         <view class="des">销售额</view>
       </view>
     </view>
-    <view class="itemRow">
+    <view class="itemRow" wx:if="{{ staticsSummary.available_money && staticsSummary.available_money !== '0.0' && staticsSummary.available_money !== '0.00' }}">
+    <!-- <view class="itemRow"> -->
       <view class="price">￥{{ staticsSummary.available_money }}</view>
       <view class="yue">可提现金额</view>
       <view class="btnBox" bindtap="withdraw">立即提现</view>
@@ -22,11 +23,14 @@
     </view>
   </view>
   <view class="historyBox">
-    <view class="item" wx:for="{{ cahs_list }}" wx:key="index">
-      <view class="tittleT">{{ item.tip }}<text>订单编号：{{ item.order_no }}</text></view>
-      <view class="timeT">{{ item.time }}</view>
-      <view class="{{ item.cashOn ? 'num' : 'num2' }}">{{ item.cash }}</view>
-      <view class="{{ item.status_ch === '提现中' ? 'status' : 'status1' }}">{{ item.status_ch }}</view>
+    <view wx:for="{{ cahs_list }}" wx:key="index">
+      <view class="timeRow">{{ item.time }}<text wx:if="{{ item.is_today == 1 }}">（今天）</text></view>
+      <view class="item" wx:for="{{ item.cash_list }}" wx:key="index">
+        <view class="tittleT">{{ item.tip }}<text>订单编号：{{ item.order_no }}</text></view>
+        <view class="timeT">{{ item.time }}</view>
+        <view class="{{ item.cashOn ? 'num' : 'num2' }}">{{ item.cash }}</view>
+        <view class="{{ item.status_ch === '提现中' ? 'status' : 'status1' }}">{{ item.status_ch }}</view>
+      </view>
     </view>
   </view>
 </view>

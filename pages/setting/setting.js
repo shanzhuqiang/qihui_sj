@@ -15,12 +15,71 @@ Page({
    */
   onLoad: function (options) {
   },
-
+  // 退出登录
+  loginOut () {
+    wx.showModal({
+      title: '提示',
+      content: '确认退出登录吗？',
+      success: (res) => {
+        if (res.confirm) {
+          wx.showLoading({
+            mask: true,
+            title: "加载中..."
+          });
+          wx.request({
+            url: app.globalData.baseUrl + `/Merch/loginOut.html`,
+            header: {
+              Authorization: app.globalData.auth_code
+            },
+            method: 'POST',
+            success: (res) => {
+              wx.hideLoading();
+              if (res.data.error_code === 0) {
+                app.globalData.merch_login = 0
+                app.globalData.store_id = ""
+                wx.showToast({
+                  title: "登出成功",
+                  mask: true,
+                  icon: "success",
+                  success: () => {
+                    setTimeout(() => {
+                      wx.reLaunch({
+                        url: '../login/login',
+                      })
+                    }, 1500);
+                  }
+                });
+              } else {
+                wx.showModal({
+                  title: '提示',
+                  showCancel: false,
+                  content: res.data.msg
+                })
+              }
+            },
+            fail: (res) => {
+              wx.showToast({
+                icon: 'none',
+                title: '网络请求失败',
+              })
+            }
+          })
+        } else if (res.cancel) {
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getStoreInfo()
+    if (app.globalData.merch_login !== 1) {
+      wx.navigateTo({
+        url: '../login/login',
+      })
+    } else {
+      this.getStoreInfo()
+    }
   },
   // 获取商家详情
   getStoreInfo() {
@@ -34,6 +93,7 @@ Page({
       },
       method: 'POST',
       success: (res) => {
+        wx.stopPullDownRefresh()
         if (res.data.error_code === 0) {
           let storeInfo = res.data.bizobj.data
           this.setData({
@@ -123,7 +183,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.getStoreInfo()
   },
 
   /**

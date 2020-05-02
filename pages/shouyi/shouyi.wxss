@@ -83,12 +83,21 @@
   top: 35rpx;
 }
 .shouyiWrap .historyBox{
+}
+.shouyiWrap .historyBox .timeRow{
+  height: 50rpx;
+  line-height: 50rpx;
+	font-family: PingFangSC-Regular;
+	font-size: 22rpx;
+	color: #777;
+  background: #f8f8f8;
   padding: 0 30rpx;
 }
 .shouyiWrap .historyBox .item{
   height: 160rpx;
   border-bottom: 1rpx solid #f8f8f8;
   position: relative;
+  padding: 0 30rpx;
 }
 .shouyiWrap .historyBox .item .tittleT{
 	font-family: PingFangSC-Regular;

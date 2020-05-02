@@ -109,6 +109,15 @@ page{
 .orderWrap .mainBox{
   border-top: 16rpx solid #f8f8f8;
 }
+.orderWrap .mainBox .timeRow{
+  height: 50rpx;
+  line-height: 50rpx;
+	font-family: PingFangSC-Regular;
+	font-size: 22rpx;
+	color: #777;
+  background: #f8f8f8;
+  padding: 0 30rpx;
+}
 .orderWrap .mainBox .itemBox{
   padding: 0 30rpx;
   border-bottom: 16rpx solid #f8f8f8;

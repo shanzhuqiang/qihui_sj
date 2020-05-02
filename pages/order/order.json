@@ -6,5 +6,7 @@
     "van-row": "@vant/weapp/row/index",
     "van-col": "@vant/weapp/col/index"
   },
-  "navigationBarTitleText": "订单"
+  "navigationBarTitleText": "订单",
+  "backgroundTextStyle": "dark",
+  "enablePullDownRefresh": true
 }

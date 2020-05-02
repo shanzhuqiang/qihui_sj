@@ -4,5 +4,7 @@
     "van-cell-group": "@vant/weapp/cell-group/index",
     "van-switch": "@vant/weapp/switch/index"
   },
-  "navigationBarTitleText": "设置"
+  "navigationBarTitleText": "设置",
+  "backgroundTextStyle": "dark",
+  "enablePullDownRefresh": true
 }

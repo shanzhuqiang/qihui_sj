@@ -18,5 +18,6 @@
       {{ checked ? "正常接单中" : "已暂停接单" }}
       <van-switch class="switchClass" checked="{{ checked }}" active-color="#f3475f" inactive-color="#999" size="36rpx" bind:change="onChange"/>
     </van-cell>
+    <view class="loginOut" bindtap="loginOut">退出登录</view>
   </van-cell-group>
 </view>

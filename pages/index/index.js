@@ -43,6 +43,8 @@ Page({
       wx.scanCode({
         onlyFromCamera: true,
         success: (res) => {
+          console.log(res)
+          return false
           wx.showLoading({
             mask: true,
             title: "核销中..."
@@ -83,7 +85,7 @@ Page({
           })
         }
       })
-    } else if (this.data.merch_login === 0) {
+    } else if (this.data.merch_login !== 1) {
       wx.navigateTo({
         url: '../login/login',
       })
@@ -107,6 +109,7 @@ Page({
       data: data,
       method: 'POST',
       success: (res) => {
+        wx.stopPullDownRefresh()
         if (res.data.error_code === 0) {
           this.setData({
             homeData: res.data.bizobj
@@ -134,7 +137,7 @@ Page({
       wx.navigateTo({
         url: '../shouyi/shouyi?money=' + this.data.homeData.total_money,
       })
-    } else if (this.data.merch_login === 0) {
+    } else if (this.data.merch_login !== 1) {
       wx.navigateTo({
         url: '../login/login',
       })
@@ -142,7 +145,11 @@ Page({
   },
   // 订单数
   orderNum() {
-    if (this.data.merch_login === 0) {
+    if (this.data.merch_login === 1) {
+      wx.switchTab({
+        url: '../order/order',
+      })
+    } else if(this.data.merch_login !== 1) {
       wx.navigateTo({
         url: '../login/login',
       })
@@ -173,7 +180,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.judgeMerch()
   },
 
   /**

@@ -32,12 +32,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (app.globalData.merch_login === 0) {
+    if (app.globalData.merch_login !== 1) {
       wx.navigateTo({
         url: '../login/login',
       })
+    } else {
+      this.init()
     }
-    this.init()
   },
   // 初始化
   init () {
@@ -133,6 +134,12 @@ Page({
       value: e.detail
     })
   },
+  // 打电话
+  call(e) {
+    wx.makePhoneCall({
+      phoneNumber: e.currentTarget.dataset.mobile //仅为示例，并非真实的电话号码
+    })
+  },
   // 搜索
   onSearch (e) {
     this.getOrderList()
@@ -154,33 +161,46 @@ Page({
       data: data,
       method: 'POST',
       success: (res) => {
+        wx.stopPullDownRefresh()
         if (res.data.error_code === 0) {
+          let order_list = []
+          res.data.bizobj.order_list.forEach(el => {
+            let obj = {}
+            for (let key in el) {
+              obj["time"] = key
+              obj["orders"] = el[key]["orders"]
+              obj["is_today"] = el[key]["is_today"]
+            }
+            order_list.push(obj)
+          })
           let data = res.data.bizobj.order_list
           let orderNum = {
-            all: data.length,
+            all: 0,
             one: 0,
             two: 0,
             three: 0,
             four: 0
           }
-          data.forEach(el => {
-            // el["totalP"] = el.package_fee ? Number(el.total_price) + Number(el.package_fee) : Number(el.total_price)
-            if (el.order_status === 2) {
-              orderNum.one++
-            }
-            if (el.order_status === 6) {
-              orderNum.two++
-            }
-            if (el.order_status === 5) {
-              orderNum.three++
-            }
-            if (el.order_status === 7) {
-              orderNum.four++
-            }
+          order_list.forEach(el => {
+            orderNum.all += el.orders.length
+            el.orders.forEach(el2 => {
+              if (el2.order_status === 2) {
+                orderNum.one++
+              }
+              if (el2.order_status === 6) {
+                orderNum.two++
+              }
+              if (el2.order_status === 5) {
+                orderNum.three++
+              }
+              if (el2.order_status === 7) {
+                orderNum.four++
+              }
+            })
           })
           this.setData({
-            order_list: data,
-            order_listAll: data,
+            order_list: order_list,
+            order_listAll: order_list,
             orderNum: orderNum
           })
         } else {
@@ -261,7 +281,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.init()
   },
 
   /**
