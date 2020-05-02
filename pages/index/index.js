@@ -43,8 +43,6 @@ Page({
       wx.scanCode({
         onlyFromCamera: true,
         success: (res) => {
-          console.log(res)
-          return false
           wx.showLoading({
             mask: true,
             title: "核销中..."
