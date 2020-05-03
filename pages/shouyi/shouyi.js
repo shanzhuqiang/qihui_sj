@@ -23,57 +23,65 @@ Page({
   },
   // 提现
   withdraw () {
-    wx.showModal({
-      title: '提示',
-      content: '平台将于每月5号、15号对商家进行打款，打款日起，3日内到账，确认提现吗？',
-      success: (res) => {
-        if (res.confirm) {
-          wx.showLoading({
-            mask: true,
-            title: "加载中..."
-          });
-          wx.request({
-            url: app.globalData.baseUrl + `/Merch/withdraw.html`,
-            header: {
-              Authorization: app.globalData.auth_code
-            },
-            data: {
-              store_id: app.globalData.store_id,
-              cash: this.data.staticsSummary.available_money
-            },
-            method: 'POST',
-            success: (res) => {
-              wx.hideLoading();
-              if (res.data.error_code === 0) {
+    if (this.data.staticsSummary.available_money && this.data.staticsSummary.available_money !== '0.0' && this.data.staticsSummary.available_money !== '0.00') {
+      wx.showModal({
+        title: '提示',
+        content: '平台将于每月5号、15号对商家进行打款，打款日起，3日内到账，确认提现吗？',
+        success: (res) => {
+          if (res.confirm) {
+            wx.showLoading({
+              mask: true,
+              title: "加载中..."
+            });
+            wx.request({
+              url: app.globalData.baseUrl + `/Merch/withdraw.html`,
+              header: {
+                Authorization: app.globalData.auth_code
+              },
+              data: {
+                store_id: app.globalData.store_id,
+                cash: this.data.staticsSummary.available_money
+              },
+              method: 'POST',
+              success: (res) => {
+                wx.hideLoading();
+                if (res.data.error_code === 0) {
+                  wx.showToast({
+                    title: '申请成功',
+                    mask: true,
+                    icon: 'success',
+                    success() {
+                      setTimeout(() => {
+                        wx.navigateBack()
+                      }, 1500)
+                    }
+                  })
+                } else {
+                  wx.showModal({
+                    title: '提示',
+                    showCancel: false,
+                    content: res.data.msg
+                  })
+                }
+              },
+              fail: (res) => {
                 wx.showToast({
-                  title: '申请成功',
-                  mask: true,
-                  icon: 'success',
-                  success() {
-                    setTimeout(() => {
-                      wx.navigateBack()
-                    }, 1500)
-                  }
-                })
-              } else {
-                wx.showModal({
-                  title: '提示',
-                  showCancel: false,
-                  content: res.data.msg
+                  icon: 'none',
+                  title: '网络请求失败',
                 })
               }
-            },
-            fail: (res) => {
-              wx.showToast({
-                icon: 'none',
-                title: '网络请求失败',
-              })
-            }
-          })
-        } else if (res.cancel) {
+            })
+          } else if (res.cancel) {
+          }
         }
-      }
-    })
+      })
+    } else {
+      wx.showModal({
+        title: '提示',
+        showCancel: false,
+        content: "当前可提现余额为0，无法提现"
+      })
+    }
   },
   // 收益记录
   getCashListByTime() {

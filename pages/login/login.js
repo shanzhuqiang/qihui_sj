@@ -68,7 +68,9 @@ Page({
               icon: "success",
               success: () => {
                 setTimeout(() => {
-                  wx.navigateBack()
+                  wx.switchTab({
+                    url: '../index/index',
+                  })
                 }, 1500);
               }
             });

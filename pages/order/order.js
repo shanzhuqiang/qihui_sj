@@ -16,7 +16,6 @@ Page({
     value: "",
     type: "all",
     order_list: [],
-    order_listAll: [],
     datePickerIsShow: false,
     timeFilter: false,
     startAt: "",
@@ -40,6 +39,128 @@ Page({
       this.init()
     }
   },
+  // 同意退单
+  agree(e) {
+    wx.showModal({
+      title: '提示',
+      content: '确认同意退单吗？',
+      success: (res) => {
+        if (res.confirm) {
+          wx.showLoading({
+            mask: true,
+            title: "提交中..."
+          });
+          let data = {
+            store_id: app.globalData.store_id,
+            order_id: e.currentTarget.dataset.id,
+            status: 7
+          }
+          wx.request({
+            url: app.globalData.baseUrl + `/Merch/changeOrderStatus.html`,
+            header: {
+              Authorization: app.globalData.auth_code
+            },
+            data: data,
+            method: 'POST',
+            success: (res) => {
+              wx.hideLoading();
+              if (res.data.error_code === 0) {
+                this.data.order_list.forEach(el =>{
+                  el.orders.forEach(el2 =>{
+                    if (el2.order_id == e.currentTarget.dataset.id) {
+                      el2["order_status"] = 7
+                    }
+                  })
+                })
+                this.setData({
+                  order_list: this.data.order_list
+                })
+                wx.showToast({
+                  title: "退单成功",
+                  mask: true,
+                  icon: "success"
+                });
+              } else {
+                wx.showModal({
+                  title: '提示',
+                  showCancel: false,
+                  content: res.data.msg
+                })
+              }
+            },
+            fail: (res) => {
+              wx.showToast({
+                icon: 'none',
+                title: '网络请求失败',
+              })
+            }
+          })
+        } else if (res.cancel) {
+        }
+      }
+    })
+  },
+  // 不同意退单
+  notAgree(e) {
+    wx.showModal({
+      title: '提示',
+      content: '确认驳回退单请求吗？',
+      success: (res) => {
+        if (res.confirm) {
+          wx.showLoading({
+            mask: true,
+            title: "提交中..."
+          });
+          let data = {
+            store_id: app.globalData.store_id,
+            order_id: e.currentTarget.dataset.id,
+            status: 8
+          }
+          wx.request({
+            url: app.globalData.baseUrl + `/Merch/changeOrderStatus.html`,
+            header: {
+              Authorization: app.globalData.auth_code
+            },
+            data: data,
+            method: 'POST',
+            success: (res) => {
+              wx.hideLoading();
+              if (res.data.error_code === 0) {
+                this.data.order_list.forEach(el => {
+                  el.orders.forEach(el2 => {
+                    if (el2.order_id == e.currentTarget.dataset.id) {
+                      el2["order_status"] = 8
+                    }
+                  })
+                })
+                wx.showToast({
+                  title: "驳回成功",
+                  mask: true,
+                  icon: "success"
+                });
+                this.setData({
+                  order_list: this.data.order_list
+                })
+              } else {
+                wx.showModal({
+                  title: '提示',
+                  showCancel: false,
+                  content: res.data.msg
+                })
+              }
+            },
+            fail: (res) => {
+              wx.showToast({
+                icon: 'none',
+                title: '网络请求失败',
+              })
+            }
+          })
+        } else if (res.cancel) {
+        }
+      }
+    })
+  },
   // 初始化
   init () {
     let date = new Date()
@@ -61,8 +182,14 @@ Page({
       type: type
     })
     if (type === "all") {
+      this.data.order_list.forEach(el => {
+        el["timeShow"] = true
+        el.orders.forEach(el2 => {
+          el2["isShow"] = true
+        })
+      })
       this.setData({
-        order_list: this.data.order_listAll
+        order_list: this.data.order_list
       })
     } else {
       let order_list = []
@@ -72,13 +199,19 @@ Page({
         three: 5,
         four: 7
       }
-      this.data.order_listAll.forEach(el => {
-        if (el.order_status == key[type]) {
-          order_list.push(el)
-        }
+      this.data.order_list.forEach(el => {
+        el["timeShow"] = false
+        el.orders.forEach(el2 => {
+          if (el2.order_status == key[type]) {
+            el2["isShow"] = true
+            el["timeShow"] = true
+          } else {
+            el2["isShow"] = false
+          }
+        })
       })
       this.setData({
-        order_list: order_list
+        order_list: this.data.order_list
       })
     }
   },
@@ -110,6 +243,7 @@ Page({
                 mask: true,
                 icon: "success"
               });
+              this.init()
             } else {
               wx.showModal({
                 title: '提示',
@@ -183,7 +317,9 @@ Page({
           }
           order_list.forEach(el => {
             orderNum.all += el.orders.length
+            el["timeShow"] = true
             el.orders.forEach(el2 => {
+              el2["isShow"] = true
               if (el2.order_status === 2) {
                 orderNum.one++
               }
@@ -200,7 +336,6 @@ Page({
           })
           this.setData({
             order_list: order_list,
-            order_listAll: order_list,
             orderNum: orderNum
           })
         } else {

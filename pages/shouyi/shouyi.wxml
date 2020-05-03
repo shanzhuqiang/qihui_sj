@@ -11,8 +11,8 @@
         <view class="des">销售额</view>
       </view>
     </view>
-    <view class="itemRow" wx:if="{{ staticsSummary.available_money && staticsSummary.available_money !== '0.0' && staticsSummary.available_money !== '0.00' }}">
-    <!-- <view class="itemRow"> -->
+    <!-- <view class="itemRow" wx:if="{{ staticsSummary.available_money && staticsSummary.available_money !== '0.0' && staticsSummary.available_money !== '0.00' }}"> -->
+    <view class="itemRow">
       <view class="price">￥{{ staticsSummary.available_money }}</view>
       <view class="yue">可提现金额</view>
       <view class="btnBox" bindtap="withdraw">立即提现</view>

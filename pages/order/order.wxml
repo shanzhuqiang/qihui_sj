@@ -58,32 +58,37 @@
   </view>
   <view class="mainBox">
     <view wx:for="{{ order_list }}" wx:key="index">
-      <view class="timeRow">{{ item.time }}<text wx:if="{{ item.is_today == 1 }}">（今天）</text></view>
-      <view class="itemBox" wx:for="{{ item.orders }}" wx:key="index">
-        <view class="one" >
-          <view class="fl leftBox">
-            <view class="num">#{{ item.order_id }}</view>
-            <view class="type">{{ item.way === 1 ? '堂食' : item.way === 2 ? '外带' : item.way }}</view>
+      <view class="timeRow" wx:if="{{ item.timeShow }}">{{ item.time }}<text wx:if="{{ item.is_today == 1 }}">（今天）</text></view>
+      <view wx:for="{{ item.orders }}" wx:key="index"> 
+        <view class="itemBox" wx:if="{{ item.isShow }}">
+          <view class="one" >
+            <view class="fl leftBox">
+              <!-- <view class="num">#{{ item.order_id }}</view> -->
+              <view class="num">#{{ item.order_num }}</view>
+              <view class="type">{{ item.way === 1 ? '堂食' : item.way === 2 ? '外带' : item.way }}</view>
+            </view>
+            <view class="fl">
+              <view class="orderId">订单编号：{{ item.order_sn }}</view>
+              <view class="time">下单时间：{{ item.add_time }}</view>
+            </view>
+            <view class="status fr">{{ item.order_status_tip }}</view>
           </view>
-          <view class="fl">
-            <view class="orderId">订单编号：{{ item.order_sn }}</view>
-            <view class="time">下单时间：{{ item.add_time }}</view>
+          <view class="two">
+            <view class="name">{{ item.consignee }}<text class="phone">{{ item.mobile }}</text></view>
+            <view class="time">预约时间：{{ item.app_time }}</view>
           </view>
-          <view class="status fr">{{ item.order_status_tip }}</view>
-        </view>
-        <view class="two">
-          <view class="name">{{ item.consignee }}<text class="phone">{{ item.mobile }}</text></view>
-          <view class="time">预约时间：{{ item.app_time }}</view>
-        </view>
-        <view class="three">
-          本单收入
-          <view class="price">￥{{ item.total_price }}</view>
-          <!-- <view class="price">￥{{ item.totalP }}</view> -->
-        </view>
-        <view class="four">
-          <view class="btn btn2">打印小票</view>
-          <view class="btn btn2" wx:if="{{ item.order_status == 2 || item.order_status == 3 || item.order_status == 4 }}" catchtap="saoCode">扫码</view>
-          <view class="btn" bindtap="call" data-mobile="{{ item.mobile }}">一键拨打客户电话</view>
+          <view class="three">
+            本单金额
+            <view class="price">￥{{ item.total_price }}</view>
+            <!-- <view class="price">￥{{ item.totalP }}</view> -->
+          </view>
+          <view class="four">
+            <!-- <view class="btn btn2">打印小票</view> -->
+            <view class="btn btn2" wx:if="{{ item.order_status == 2 || item.order_status == 3 || item.order_status == 4 }}" catchtap="saoCode">扫码</view>
+            <view class="btn btn2" bindtap="notAgree" wx:if="{{ item.order_status == 6 }}" data-id="{{ item.order_id }}">不同意</view>
+            <view class="btn btn2" bindtap="agree" wx:if="{{ item.order_status == 6 }}" data-id="{{ item.order_id }}">同意</view>
+            <view class="btn" bindtap="call" data-mobile="{{ item.mobile }}">一键拨打客户电话</view>
+          </view>
         </view>
       </view>
     </view>
