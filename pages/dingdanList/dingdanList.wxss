@@ -1,0 +1,138 @@
+page{
+  /* height: 100%;
+  background: #f8f8f8; */
+}
+.dingdanListWrap{
+  /* background: #f8f8f8; */
+}
+.dingdanListWrap .searchBox{
+  display: table;
+  width: 100%;
+  background: #fff;
+}
+.dingdanListWrap .searchBox .searchLeft{
+  display:table-cell;
+}
+.dingdanListWrap .searchBox .searchRight{
+  display:table-cell;
+  width: 100rpx;
+}
+.dingdanListWrap .searchBox .searchRight .textBox{
+  display: inline-block;
+  width: 60rpx;
+}
+.dingdanListWrap .searchBox .searchRight .textBox .text{
+	font-family: PingFangSC-Medium;
+  display: inline-block;
+	font-size: 24rpx;
+  line-height: 24rpx;
+	color: #333;
+  position: relative;
+  top: -6rpx;
+}
+/* filterTimeBox */
+.dingdanListWrap .filterTimeBox{
+  height: 80rpx;
+  padding: 10rpx 30rpx 20rpx;
+  border-bottom: 16rpx solid #f8f8f8;
+}
+.dingdanListWrap .filterTimeBox .filterTimeV {
+  width: 50%;
+}
+.dingdanListWrap .filterTimeBox .filterTimeV .title{
+	font-family: PingFangSC-Regular;
+	font-size: 24rpx;
+  height: 40rpx;
+	line-height: 40rpx;
+	color: #555;
+}
+.dingdanListWrap .filterTimeBox .filterTimeV .time{
+	font-family: PingFangSC-Semibold;
+	font-size: 34rpx;
+  height: 40rpx;
+	line-height: 40rpx;
+	color: #333;
+}
+.dingdanListWrap .filterTimeBox .arrowIcon{
+  margin: 30rpx;
+  float: right;
+}
+/* main */
+.dingdanListWrap .historyBox .timeRow{
+  height: 50rpx;
+  line-height: 50rpx;
+	font-family: PingFangSC-Regular;
+	font-size: 22rpx;
+	color: #777;
+  background: #f8f8f8;
+  padding: 0 30rpx;
+}
+.dingdanListWrap .historyBox .item{
+  height: 160rpx;
+  border-bottom: 1rpx solid #f8f8f8;
+  position: relative;
+  padding: 0 30rpx;
+}
+.dingdanListWrap .historyBox .item .tittleT{
+	font-family: PingFangSC-Regular;
+	font-size: 30rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+	color: #333;
+  padding-top: 42rpx;
+}
+.dingdanListWrap .historyBox .item .tittleT > text{
+	font-family: PingFangSC-Regular;
+	font-size: 24rpx;
+	color: #959595;
+  margin-left: 14rpx;
+}
+.dingdanListWrap .historyBox .item .timeT{
+	font-family: PingFangSC-Regular;
+	font-size: 24rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+	color: #959595;
+  padding-top: 20rpx;
+}
+.dingdanListWrap .historyBox .item .num{
+	font-family: PingFangSC-Semibold;
+	font-size: 36rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+	color: #f34848;
+  position: absolute;
+  right: 30rpx;
+  top: 44rpx;
+}
+.dingdanListWrap .historyBox .item .num2{
+	font-family: PingFangSC-Semibold;
+	font-size: 36rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+	color: #333;
+  position: absolute;
+  right: 30rpx;
+  top: 44rpx;
+}
+.dingdanListWrap .historyBox .item .status{
+	font-family: PingFangSC-Regular;
+	font-size: 24rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+	color: #e89e3e;
+  position: absolute;
+  right: 30rpx;
+  top: 90rpx;
+}
+.dingdanListWrap .historyBox .item .status1{
+	font-family: PingFangSC-Regular;
+	font-size: 24rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+	color: #959595;
+  position: absolute;
+  right: 30rpx;
+  top: 90rpx;
+}
+

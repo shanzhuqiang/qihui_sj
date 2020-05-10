@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "com-date-picker": "../../components/date-picker/date-picker",
+    "van-search": "@vant/weapp/search/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-row": "@vant/weapp/row/index",
+    "van-col": "@vant/weapp/col/index"
+  },
+  "navigationBarTitleText": "订单流水",
+  "backgroundTextStyle": "dark",
+  "enablePullDownRefresh": true
+}

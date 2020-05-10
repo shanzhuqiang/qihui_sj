@@ -7,6 +7,9 @@
     "pages/login/login",
     "pages/setting/setting",
     "pages/shouyi/shouyi",
+    "pages/zhanghu/zhanghu",
+    "pages/dingdanList/dingdanList",
+    "pages/tixianList/tixianList",
     "pages/passwordForgive/passwordForgive",
     "pages/passwordChange/passwordChange"
   ],

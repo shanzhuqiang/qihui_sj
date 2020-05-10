@@ -39,12 +39,6 @@ Page({
       this.init()
     }
   },
-  // 订单详情
-  goOrderInfo(e) {
-    wx.navigateTo({
-      url: `../orderInfo/orderInfo?id=${e.currentTarget.dataset.id}`,
-    }) 
-  },
   // 同意退单
   agree(e) {
     wx.showModal({
@@ -187,7 +181,39 @@ Page({
     this.setData({
       type: type
     })
-    this.getOrderList()
+    if (type === "all") {
+      this.data.order_list.forEach(el => {
+        el["timeShow"] = true
+        el.orders.forEach(el2 => {
+          el2["isShow"] = true
+        })
+      })
+      this.setData({
+        order_list: this.data.order_list
+      })
+    } else {
+      let order_list = []
+      let key = {
+        one: 2,
+        two: 6,
+        three: 5,
+        four: 7
+      }
+      this.data.order_list.forEach(el => {
+        el["timeShow"] = false
+        el.orders.forEach(el2 => {
+          if (el2.order_status == key[type]) {
+            el2["isShow"] = true
+            el["timeShow"] = true
+          } else {
+            el2["isShow"] = false
+          }
+        })
+      })
+      this.setData({
+        order_list: this.data.order_list
+      })
+    }
   },
   // 扫码核销
   saoCode() {
@@ -281,7 +307,6 @@ Page({
             }
             order_list.push(obj)
           })
-          // 获取各个订单状态类型的数量
           let data = res.data.bizobj.order_list
           let orderNum = {
             all: 0,
@@ -309,33 +334,6 @@ Page({
               }
             })
           })
-          // 判断显示
-          if (this.data.type === "all") {
-            order_list.forEach(el => {
-              el["timeShow"] = true
-              el.orders.forEach(el2 => {
-                el2["isShow"] = true
-              })
-            })
-          } else {
-            let key = {
-              one: 2,
-              two: 6,
-              three: 5,
-              four: 7
-            }
-            order_list.forEach(el => {
-              el["timeShow"] = false
-              el.orders.forEach(el2 => {
-                if (el2.order_status == key[this.data.type]) {
-                  el2["isShow"] = true
-                  el["timeShow"] = true
-                } else {
-                  el2["isShow"] = false
-                }
-              })
-            })
-          }
           this.setData({
             order_list: order_list,
             orderNum: orderNum

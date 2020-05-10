@@ -1,0 +1,44 @@
+<view class="dingdanListWrap">
+  <view class="searchBox">
+    <view class="searchLeft">
+      <van-search value="{{ value }}" placeholder="请输入订单编号" bind:change="onChange"></van-search>
+    </view>
+    <view class="searchRight" bindtap="selectDate">
+      <van-icon name="filter-o" size="20px"/>
+      <view class="textBox">
+        <text class="text">日期</text>
+      </view>
+    </view>
+  </view>
+  <view class="filterTimeBox" wx:if="{{ timeFilter }}">
+    <view class="filterTimeV fl">
+      <view class="title">开始时间</view>
+      <view class="time">{{ startAt }}</view>
+    </view>
+    <view class="filterTimeV fl">
+      <view class="title">结束时间</view>
+      <view class="time">{{ endAt }}</view>
+    </view>
+  </view>
+  <view class="historyBox">
+    <view wx:for="{{ cahs_list }}" wx:key="index" >
+      <view class="timeRow">{{ item.time }}<text wx:if="{{ item.is_today == 1 }}">（今天）</text></view>
+      <view class="item" wx:for="{{ item.cash_list }}" wx:key="index">
+        <view class="tittleT">{{ item.tip }}<text>订单编号：{{ item.order_no }}</text></view>
+        <view class="timeT">{{ item.time }}</view>
+        <view class="{{ item.cashOn ? 'num' : 'num2' }}">{{ item.cash }}</view>
+        <view class="{{ item.status_ch === '提现中' ? 'status' : 'status1' }}">{{ item.status_ch }}</view>
+      </view>
+    </view>
+  </view>
+  <block wx:if="{{datePickerIsShow}}">
+    <com-date-picker
+            id="date-picker"
+            startAt="{{ startAt }}"
+            endAt="{{ endAt }}"
+            isShow="{{ datePickerIsShow }}"
+            bindsureclick="onDatePickerOnSureClick"
+            bindonTouchmask="onTouchmask">
+    </com-date-picker>
+  </block>
+</view>

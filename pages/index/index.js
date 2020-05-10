@@ -153,6 +153,18 @@ Page({
       })
     }
   },
+  // 账户
+  goZhanghu() {
+    if (this.data.merch_login === 1) {
+      wx.navigateTo({
+        url: '../zhanghu/zhanghu?money=' + this.data.homeData.total_money,
+      })
+    } else if (this.data.merch_login !== 1) {
+      wx.navigateTo({
+        url: '../login/login',
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -1,45 +1,73 @@
-// pages/shouyi/shouyi.js
+// pages/order/order.js
 const app = getApp()
-import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    value: "",
     cahs_list: [],
-    money: ""
+    datePickerIsShow: false,
+    timeFilter: false,
+    startAt: "",
+    endAt: ""  
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+  },
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    if (app.globalData.merch_login !== 1) {
+      wx.navigateTo({
+        url: '../login/login',
+      })
+    } else {
+      this.init()
+    }
+  },
+  // 初始化
+  init () {
+    let date = new Date()
+    let year = date.getFullYear()
+    let month = date.getMonth() + 1
+    let day = date.getDate()
+    let time = year + "-" + (month < 10 ? "0" + month : month) + "-01"
+    let time2 = year + "-" + (month < 10 ? "0" + month : month) + "-" + (day < 10 ? "0" + day : day)
     this.setData({
-      money: options.money
+      startAt: time,
+      endAt: time2
     })
     this.getCashListByTime()
   },
-  // 今日营业额统计
-  dialogOne() {
-    Dialog.alert({
-      message: '您今日的订单金额总和',
-    }).then(() => {
-      // on close
-    });
+  // 搜索改变
+  onChange(e) {
+    this.setData({
+      value: e.detail
+    })
+    console.log(this.data.value)
   },
-  // 收益记录
+  // 获取订单
   getCashListByTime() {
+    let data = {
+      start_time: this.data.startAt,
+      end_time: this.data.endAt
+    }
     wx.request({
       url: app.globalData.baseUrl + `/Merch/cashListByTime.html`,
       header: {
         Authorization: app.globalData.auth_code
       },
+      data: data,
       method: 'POST',
       success: (res) => {
         if (res.data.error_code === 0) {
           let cahs_list = []
-          res.data.bizobj.cahs_list.forEach(el =>{
+          res.data.bizobj.cahs_list.forEach(el => {
             let obj = {}
             for (let key in el) {
               obj["time"] = key
@@ -74,17 +102,34 @@ Page({
       }
     })
   },
+  // 完成选择
+  onDatePickerOnSureClick(e) {
+    this.setData({
+      startAt: e.detail.startAt,
+      endAt: e.detail.endAt
+    })
+    this.setData({
+      timeFilter: true,
+      datePickerIsShow: false
+    });
+    this.getCashListByTime()
+  },
+  // 点击蒙版，日期选择器会消失
+  onTouchmask() {
+    this.setData({
+      datePickerIsShow: false
+    });
+  },
+  //选择时间
+  selectDate: function (e) {
+    this.setData({
+      datePickerIsShow: true
+    });
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
 
   },
 
@@ -106,7 +151,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.init()
   },
 
   /**

@@ -2,5 +2,5 @@
   "usingComponents": {
     "van-dialog": "@vant/weapp/dialog/index"
   },
-  "navigationBarTitleText": "今日营业统计"
+  "navigationBarTitleText": "我的账户"
 }

@@ -15,6 +15,10 @@
       </view>
     </view>
   </view>
+  <view class="userBox" bindtap="goZhanghu">
+    <image class="user" src="../../images/user.png"></image>
+    <view class="des">我的账户</view>
+  </view>
   <view class="saoBox" bindtap="saoCode">
     <image class="sao" src="../../images/sao.png"></image>
     <view class="text">扫码核销</view>

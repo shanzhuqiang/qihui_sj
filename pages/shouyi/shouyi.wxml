@@ -1,25 +1,9 @@
 <!--pages/order/order.wxml-->
 <view class="shouyiWrap">
   <view class="topBox">
-    <view class="topShow">
-      <view class="halfBox fl">
-        <view class="price">￥{{ money }}</view>
-        <view class="des">今日营业统计</view>
-      </view>
-      <view class="halfBox fr">
-        <view class="price2">￥{{ staticsSummary.total_money }}</view>
-        <view class="des">销售额</view>
-      </view>
-    </view>
-    <!-- <view class="itemRow" wx:if="{{ staticsSummary.available_money && staticsSummary.available_money !== '0.0' && staticsSummary.available_money !== '0.00' }}"> -->
-    <view class="itemRow">
-      <view class="price">￥{{ staticsSummary.available_money }}</view>
-      <view class="yue">可提现金额</view>
-      <view class="btnBox" bindtap="withdraw">立即提现</view>
-    </view>
-    <view class="itemRow">
-      <view class="price">￥{{ staticsSummary.frozen_money }}</view>
-      <view class="yue">待确认金额</view>
+    <view class="halfBox">
+      <view class="price">￥{{ money }}</view>
+      <view class="des">今日销售额统计<image class="question" bindtap="dialogOne" src="../../images/question.png"></image></view>
     </view>
   </view>
   <view class="historyBox">
@@ -33,4 +17,5 @@
       </view>
     </view>
   </view>
+  <van-dialog id="van-dialog" />  
 </view>

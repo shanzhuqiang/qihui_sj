@@ -1,52 +1,38 @@
 <!--pages/orderInfo/orderInfo.wxml-->
 <view class="orderInfoWrap">
   <view class="firstRow">
-    #09 外带
-    <view class="shopName">已接单</view>
+    #{{ orderInfo.order_info.order_num }} {{ orderInfo.order_info.way === 1 ? '堂食' : orderInfo.order_info.way === 2 ? '外带' : orderInfo.order_info.way }}
+    <view class="shopName">{{ orderInfo.order_info.order_status_tip }}</view>
   </view>
   <van-cell-group border="{{ false }}">
-    <van-cell title="订单编号：12312312312"/>
-    <van-cell title="蟹粉小笼包" label="冰的，加奶盖" class="itemRow">
+    <van-cell title="订单编号：{{ orderInfo.order_info.order_sn }}"/>
+    <van-cell wx:for="{{ orderInfo.goods_info }}" title="{{ item.goods_name }}" label="{{ item.key_name }}" class="itemRow">
       <view class="itemOne">
-        <text class="num fl">x1</text>
-        <text class="price">￥18</text>
-      </view>
-    </van-cell>
-    <van-cell title="蟹粉小笼包" label="冰的，加奶盖" class="itemRow">
-      <view class="itemOne">
-        <text class="num fl">x1</text>
-        <text class="price">￥18</text>
-      </view>
-    </van-cell>
-    <van-cell title="蟹粉小笼包" label="冰的，加奶盖" class="itemRow">
-      <view class="itemOne">
-        <text class="num fl">x1</text>
-        <text class="price">￥18</text>
+        <text class="num fl">x{{ item.goods_num }}</text>
+        <text class="price">￥{{ item.item_price }}</text>
       </view>
     </van-cell>
     <van-cell title="餐盒费" class="itemRow">
       <view class="itemOne">
-        <text class="num fl">x1</text>
-        <text class="price">￥18</text>
+        <text class="num fl"> </text>
+        <text class="price">￥{{ orderInfo.order_info.package_fee }}</text>
       </view>
     </van-cell>
-    <van-cell title="共计4件商品" class="itemRow">
+    <van-cell title="共计{{ orderInfo.order_info.total_goods_num }}件商品" class="itemRow">
       <view class="itemOne">
         <text class="num">实付：</text>
-        <text class="price2">￥18</text>
+        <text class="price2">￥{{ orderInfo.order_info.total_price }}</text>
       </view>
     </van-cell>
     <view style="height: 16rpx"></view>
-    <van-cell title="下单时间" value="2020-02-08 16:30"/>
+    <van-cell title="下单时间" value="{{ orderInfo.order_info.add_time }}"/>
     <view style="height: 16rpx"></view>
-    <van-cell title="预计到达时间" value="2020-02-08 16:30"/>
+    <van-cell title="预计到达时间" value="{{ orderInfo.order_info.app_time }}"/>
     <view style="height: 16rpx"></view>
-    <van-cell title="备注" value="这是备注这是备注这是备注这是备注这是备注这是备注"/>
-
+    <van-cell title="备注" value="{{ orderInfo.order_info.tips }}"/>
   </van-cell-group>
   <view style="height:120rpx;background: #f8f8f8;"></view>
   <view class="bottomBox">
-    <view class="btnBox">取消订单</view>
-    <view class="btnBox colorBtn">撤回</view>
+    <view class="btnBox" bindtap="call">一键拨打客户电话</view>
   </view>
 </view>

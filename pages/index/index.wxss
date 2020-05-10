@@ -1,6 +1,6 @@
 /**index.wxss**/
 .indexWrap .topBox{
-  height: 204rpx;
+  height: 270rpx;
   background: #f8f8f8;
 }
 .indexWrap .topBox .topBg{
@@ -51,6 +51,26 @@
   height: 55rpx;
   top: 39rpx;
   right: 33rpx;
+}
+.indexWrap .userBox{
+	width: 690rpx;
+	height: 140rpx;
+	background-color: #ffffff;
+	box-shadow: -1rpx 6rpx 8rpx 1rpx 
+		rgba(0, 0, 0, 0.05);
+	border-radius: 10rpx;
+  text-align: center;
+  margin: -60rpx auto 0;
+}
+.indexWrap .userBox .user{
+  width: 47rpx;
+  height: 58rpx;
+  padding-top: 18rpx;
+}
+.indexWrap .userBox .des{
+	font-family: PingFangSC-Regular;
+	font-size: 30rpx;
+	color: #333;
 }
 .indexWrap .saoBox{
   width: 204rpx;

@@ -59,7 +59,7 @@
   <view class="mainBox">
     <view wx:for="{{ order_list }}" wx:key="index">
       <view class="timeRow" wx:if="{{ item.timeShow }}">{{ item.time }}<text wx:if="{{ item.is_today == 1 }}">（今天）</text></view>
-      <view wx:for="{{ item.orders }}" wx:key="index" data-id="{{ item.order_id }}" bindtap="goOrderInfo"> 
+      <view wx:for="{{ item.orders }}" wx:key="index"> 
         <view class="itemBox" wx:if="{{ item.isShow }}">
           <view class="one" >
             <view class="fl leftBox">
@@ -85,13 +85,39 @@
           <view class="four">
             <!-- <view class="btn btn2">打印小票</view> -->
             <view class="btn btn2" wx:if="{{ item.order_status == 2 || item.order_status == 3 || item.order_status == 4 }}" catchtap="saoCode">扫码</view>
-            <view class="btn btn2" catchtap="notAgree" wx:if="{{ item.order_status == 6 }}" data-id="{{ item.order_id }}">不同意</view>
-            <view class="btn btn2" catchtap="agree" wx:if="{{ item.order_status == 6 }}" data-id="{{ item.order_id }}">同意</view>
-            <view class="btn" catchtap="call" data-mobile="{{ item.mobile }}">一键拨打客户电话</view>
+            <view class="btn btn2" bindtap="notAgree" wx:if="{{ item.order_status == 6 }}" data-id="{{ item.order_id }}">不同意</view>
+            <view class="btn btn2" bindtap="agree" wx:if="{{ item.order_status == 6 }}" data-id="{{ item.order_id }}">同意</view>
+            <view class="btn" bindtap="call" data-mobile="{{ item.mobile }}">一键拨打客户电话</view>
           </view>
         </view>
       </view>
     </view>
+    <!-- <view class="itemBox">
+      <view class="one" >
+        <view class="fl leftBox">
+          <view class="num">#09</view>
+          <view class="type">外带</view>
+        </view>
+        <view class="fl">
+          <view class="orderId">订单编号：1234567890</view>
+          <view class="time">下单时间：2020-02-08 18:00</view>
+        </view>
+        <view class="status fr">已接单</view>
+      </view>
+      <view class="two">
+        <view class="name">周杰伦<text class="phone">15967101022</text></view>
+        <view class="time">预约时间：2020-02-08（明天） 18:00</view>
+      </view>
+      <view class="three">
+        本单收入
+        <view class="price">￥30.25</view>
+      </view>
+      <view class="four">
+        <view class="btn btn2">打印小票</view>
+        <view class="btn btn2">扫码</view>
+        <view class="btn">一键拨打客户电话</view>
+      </view>
+    </view> -->
   </view>
   <block wx:if="{{datePickerIsShow}}">
     <com-date-picker

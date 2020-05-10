@@ -1,20 +1,62 @@
 // pages/orderInfo/orderInfo.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    order_id: "",
+    orderInfo: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      order_id: options.id
+    })
+    this.getOrderInfo()
   },
-
+  // 获取订单详情
+  getOrderInfo() {
+    wx.request({
+      url: app.globalData.baseUrl + `/Order/orderDetail.html`,
+      header: {
+        Authorization: app.globalData.auth_code
+      },
+      data: {
+        order_id: this.data.order_id
+      },
+      method: 'POST',
+      success: (res) => {
+        if (res.data.error_code === 0) {
+          let data = res.data.bizobj.data
+          this.setData({
+            orderInfo: data
+          })
+        } else {
+          wx.showModal({
+            title: '提示',
+            showCancel: false,
+            content: res.data.msg
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  call() {
+    wx.makePhoneCall({
+      phoneNumber: this.data.orderInfo.order_info.mobile
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
