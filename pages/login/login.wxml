@@ -3,12 +3,14 @@
   <van-cell-group border="{{ false }}">
     <van-field
       value="{{ user }}"
-      bind:change="userChange"
+      type="text"
+      bind:blur="userBlur"
+      bind:input="userChange"
       placeholder="请输入账号"/>
     <van-field
       value="{{ password }}"
       type="password"
-      bind:change="passwordChange"
+      bind:input="passwordChange"
       placeholder="请输入密码"/>
     <view class="buttonBox">
       <van-button color="#f3475f" size="large" bindtap="formSubmit">立即登录</van-button>

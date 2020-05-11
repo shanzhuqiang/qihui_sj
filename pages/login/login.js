@@ -17,6 +17,12 @@ Page({
   onLoad: function (options) {
   },
   // 用户名
+  userBlur(e) {
+    this.setData({
+      user: e.detail.value
+    })
+  },
+  // 用户名
   userChange(e) {
     this.setData({
       user: e.detail

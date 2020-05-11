@@ -24,7 +24,7 @@
 		"nodeModules": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.10.4",
+	"libVersion": "2.11.0",
 	"appid": "wx7e6169c6b740a6b5",
 	"projectname": "qihui_sj",
 	"debugOptions": {
