@@ -1,7 +1,7 @@
 <!--pages/orderInfo/orderInfo.wxml-->
 <view class="orderInfoWrap">
   <view class="firstRow">
-    #{{ orderInfo.order_info.order_num }} {{ orderInfo.order_info.way === 1 ? '堂食' : orderInfo.order_info.way === 2 ? '外带' : orderInfo.order_info.way }}
+    #{{ orderInfo.order_info.order_num }} {{ orderInfo.order_info.type === 1 ? '堂食' : orderInfo.order_info.type === 2 ? '外带' : orderInfo.order_info.type }}
     <view class="shopName">{{ orderInfo.order_info.order_status_tip }}</view>
   </view>
   <van-cell-group border="{{ false }}">

@@ -5,7 +5,7 @@
     <view class="bottomBox">
       <view class="itemBox fl" bindtap="goShouyi">
         <view class="price">{{ homeData ? '￥' + homeData.total_money : '请先登录' }}</view>
-        <view class="des">今日营业额</view>
+        <view class="des">今日实际收入</view>
         <image class="money" src="../../images/money.png"></image>
       </view>
       <view class="itemBox fr" bindtap="orderNum">

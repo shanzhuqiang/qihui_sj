@@ -2,12 +2,12 @@
 <view class="shouyiWrap">
   <view class="topBox">
     <view class="itemRow">
-      <view class="price" style="color:#fe4a2c">￥{{ money }}</view>
-      <view class="yue">今日销售额统计<image class="question" bindtap="dialogOne" src="../../images/question.png"></image></view>
+      <view class="price" style="color:#fe4a2c">￥{{ staticsSummary.total_money }}</view>
+      <view class="yue">今日销售额<image class="question" bindtap="dialogOne" src="../../images/question.png"></image></view>
     </view>
     <view class="itemRow">
-      <view class="price">￥{{ staticsSummary.total_money }}</view>
-      <view class="yue">本月销售额<image class="question" bindtap="dialogTwo" src="../../images/question.png"></image></view>
+      <view class="price" style="color:#fe4a2c">￥{{ money }}</view>
+      <view class="yue">今日实际收入<image class="question" bindtap="dialogTwo" src="../../images/question.png"></image></view>
     </view>
     <view class="itemRow">
       <view class="price">￥{{ staticsSummary.available_money }}</view>
@@ -21,7 +21,7 @@
   </view>
   <view class="tabBox">
     <view class="tabItem fl" bindtap="goDingdanList">订单流水明细</view>
-    <view class="tabItem fr" bindtap="goTixianList">提现记录明细</view>
+    <!-- <view class="tabItem fr" bindtap="goTixianList">提现记录明细</view> -->
   </view>
   <van-dialog id="van-dialog" />  
 </view>

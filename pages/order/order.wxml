@@ -65,7 +65,7 @@
             <view class="fl leftBox">
               <!-- <view class="num">#{{ item.order_id }}</view> -->
               <view class="num">#{{ item.order_num }}</view>
-              <view class="type">{{ item.way === 1 ? '堂食' : item.way === 2 ? '外带' : item.way }}</view>
+              <view class="type">{{ item.type === 1 ? '堂食' : item.type === 2 ? '外带' : item.type }}</view>
             </view>
             <view class="fl">
               <view class="orderId">订单编号：{{ item.order_sn }}</view>
@@ -77,6 +77,10 @@
             <view class="name">{{ item.consignee }}<text class="phone">{{ item.mobile }}</text></view>
             <view class="time">预约时间：{{ item.app_time }}</view>
           </view>
+          <!-- <view class="two">
+            本单金额
+            <view class="price">￥{{ item.total_price }}</view>
+          </view> -->
           <view class="three">
             本单金额
             <view class="price">￥{{ item.total_price }}</view>

@@ -32,18 +32,18 @@ Page({
       url: '../tixianList/tixianList',
     })
   },
-  // 今日营业额统计
+  // 今日销售额
   dialogOne() {
     Dialog.alert({
-      message: '您今日的订单金额总和',
+      message: '您今日的订单金销售额总和',
     }).then(() => {
       // on close
     });
   },
-  // 销售额
+  // 今日实际收入
   dialogTwo() {
     Dialog.alert({
-      message: '您本月的订单金额总和',
+      message: '您今日的订单金销售实际收入总和',
     }).then(() => {
       // on close
     });

@@ -3,7 +3,7 @@
   <view class="topBox">
     <view class="halfBox">
       <view class="price">￥{{ money }}</view>
-      <view class="des">今日销售额统计<image class="question" bindtap="dialogOne" src="../../images/question.png"></image></view>
+      <view class="des">今日实际收入<image class="question" bindtap="dialogOne" src="../../images/question.png"></image></view>
     </view>
   </view>
   <view class="historyBox">
