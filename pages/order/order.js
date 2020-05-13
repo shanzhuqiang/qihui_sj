@@ -75,6 +75,7 @@ Page({
                   el.orders.forEach(el2 =>{
                     if (el2.order_id == e.currentTarget.dataset.id) {
                       el2["order_status"] = 7
+                      el2["order_status_tip"] = "已退单"
                     }
                   })
                 })
@@ -135,7 +136,8 @@ Page({
                 this.data.order_list.forEach(el => {
                   el.orders.forEach(el2 => {
                     if (el2.order_id == e.currentTarget.dataset.id) {
-                      el2["order_status"] = 8
+                      el2["order_status"] = 2
+                      el2["order_status_tip"] = "商家已接单"
                     }
                   })
                 })
@@ -281,8 +283,8 @@ Page({
             }
             order_list.push(obj)
           })
+          console.log(order_list)
           // 获取各个订单状态类型的数量
-          let data = res.data.bizobj.order_list
           let orderNum = {
             all: 0,
             one: 0,
@@ -291,23 +293,25 @@ Page({
             four: 0
           }
           order_list.forEach(el => {
-            orderNum.all += el.orders.length
-            el["timeShow"] = true
-            el.orders.forEach(el2 => {
-              el2["isShow"] = true
-              if (el2.order_status === 2) {
-                orderNum.one++
-              }
-              if (el2.order_status === 6) {
-                orderNum.two++
-              }
-              if (el2.order_status === 5) {
-                orderNum.three++
-              }
-              if (el2.order_status === 7) {
-                orderNum.four++
-              }
-            })
+            if (el.is_today === 1) {
+              orderNum.all += el.orders.length
+              el["timeShow"] = true
+              el.orders.forEach(el2 => {
+                el2["isShow"] = true
+                if (el2.order_status === 2) {
+                  orderNum.one++
+                }
+                if (el2.order_status === 6) {
+                  orderNum.two++
+                }
+                if (el2.order_status === 5) {
+                  orderNum.three++
+                }
+                if (el2.order_status === 7) {
+                  orderNum.four++
+                }
+              })
+            }
           })
           // 判断显示
           if (this.data.type === "all") {
