@@ -21,7 +21,7 @@
   </view>
   <view class="tabBox">
     <view class="tabItem fl" bindtap="goDingdanList">订单流水明细</view>
-    <!-- <view class="tabItem fr" bindtap="goTixianList">提现记录明细</view> -->
+    <view class="tabItem fr" bindtap="goTixianList">提现记录明细</view>
   </view>
   <van-dialog id="van-dialog" />  
 </view>

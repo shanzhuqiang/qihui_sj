@@ -1,7 +1,7 @@
 <view class="dingdanListWrap">
   <view class="searchBox">
     <view class="searchLeft">
-      <van-search value="{{ value }}" placeholder="请输入订单编号" bind:change="onChange"></van-search>
+      <van-search value="{{ value }}" clearable="{{ false }}" placeholder="请输入订单编号" bind:change="onChange"></van-search>
     </view>
     <view class="searchRight" bindtap="selectDate">
       <van-icon name="filter-o" size="20px"/>
@@ -22,7 +22,9 @@
   </view>
   <view class="historyBox">
     <view wx:for="{{ cahs_list }}" wx:key="index" >
-      <view class="timeRow">{{ item.time }}<text wx:if="{{ item.is_today == 1 }}">（今天）</text></view>
+      <view class="timeRow" wx:if="{{ item.cash_list.length > 0 }}">{{ item.time }}<text wx:if="{{ item.is_today == 1 }}">（今天）</text>
+        <text style="float:right">今日营业额：{{ item.today_total }}</text>
+      </view>
       <view class="item" wx:for="{{ item.cash_list }}" wx:key="index">
         <view class="tittleT">{{ item.tip }}<text>订单编号：{{ item.order_no }}</text></view>
         <view class="timeT">{{ item.time }}</view>

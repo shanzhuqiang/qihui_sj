@@ -8,6 +8,7 @@ Page({
   data: {
     value: "",
     cahs_list: [],
+    cahs_listCach: [],
     datePickerIsShow: false,
     timeFilter: false,
     startAt: "",
@@ -49,7 +50,31 @@ Page({
     this.setData({
       value: e.detail
     })
-    console.log(this.data.value)
+    let key = e.detail
+    if (key === "") {
+      this.setData({
+        cash_list: this.data.cahs_listCach
+      })
+    } else {
+      let cahs_list = []
+      this.data.cahs_listCach.forEach(el => {
+        let obj = {
+          cash_list: [],
+          is_today: el.is_today,
+          time: el.time,
+          today_total: el.today_total
+        }
+        el.cash_list.forEach(el2 => {
+          if (el2.order_no.indexOf(key) !== -1) {
+            obj.cash_list.push(el2)
+          }
+        })
+        cahs_list.push(obj)
+      })
+      this.setData({
+        cahs_list: cahs_list
+      })
+    }
   },
   // 获取订单
   getCashListByTime() {
@@ -73,6 +98,7 @@ Page({
               obj["time"] = key
               obj["cash_list"] = el[key]["cash_list"]
               obj["is_today"] = el[key]["is_today"]
+              obj["today_total"] = el[key]["today_total"]
             }
             cahs_list.push(obj)
           })
@@ -84,7 +110,8 @@ Page({
             })
           })
           this.setData({
-            cahs_list: cahs_list
+            cahs_list: cahs_list,
+            cahs_listCach: cahs_list
           })
         } else {
           wx.showModal({
